@@ -7,10 +7,11 @@ def index(request):
 def store(request):
     count = Book.objects.all().count()
     context = {
-        'count':count
+        'count':count,
+        'page': 'welcome to sirdesmond bookstore'
     }
     request.session['location'] = "unknown"
     if request.user.is_authenticated():
         request.session['location'] = "Nigeria"
 
-    return render(request, "store.html", context)
+    return render(request, "base.html", context)
