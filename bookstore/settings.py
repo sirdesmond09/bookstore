@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
     'store',
     'registration'
 )
@@ -65,6 +66,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # social app setting
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -116,3 +120,13 @@ EMAIL_HOST_PASSWORD = 'Chukwuebuka1'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'bookstoreteam@bookstore.com'
+
+# social Authentication settings
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend'
+)
+
+# # social auth - facebook 
+SOCIAL_AUTH_FACEBOOK_KEY = '376793849917296'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'e521eb11e853e48af074e934ae1662e0' 
