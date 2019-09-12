@@ -39,7 +39,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'social.apps.django_app.default',
     'store',
-    'registration'
+    'registration',
+    'bootstrap3',
+    'bootstrap_themes',
 )
 
 MIDDLEWARE_CLASSES = (

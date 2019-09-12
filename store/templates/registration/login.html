@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block bootstrap3_content %}
     <form action="." method="POST">
         {% csrf_token %}
         {{form.as_p}}

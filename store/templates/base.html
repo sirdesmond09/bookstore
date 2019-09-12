@@ -1,38 +1,88 @@
+{% extends 'bootstrap3/bootstrap3.html' %}
+
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ page|title }}</title>
-</head>
-<body background="{% static 'base/img/header_full.jpg'%}">
-    {% block content %}
-    {% if request.user.is_authenticated %}
-        <h4>
-            Welcome, {% if request.user.first_name %}
-            {{ request.user.first_name }}
-            {% else %}
-            {{ request.user.username }}
-            {% endif %}! <a href="{% url 'auth_logout' %}">Log out</a>
-        </h4>
-    {%else%}
-        <h4>
-           Welcome, Mysterious person!
-           Would you like to <a href="{% url 'auth_login' %}">Log in?</a> 
-        </h4>
-    {% endif %}
-    <h3>This is our store!</h3>
-    {% if count == 0 %}
-    <p>We have no books in store for now, check back later</p>
-    {% elif count == 1 %}
-    <p>We have {{ count }} book in store</p>
-    {% else %}
-    <p>We have {{ count }} books in store</p>
-    {% endif %}
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos fugit doloribus distinctio placeat voluptatum impedit. Quam architecto reiciendis incidunt quis assumenda veniam vero officiis. Sint ratione consequuntur illum quae voluptatem.</p>
-    <p>User location: {{ request.session.location }} </p>
+
+{% load bootstrap3 %}
+
+{% load bootstrap_themes %}
+
+{% bootstrap_styles theme='simplex' type='min.css'  %}
+
+{% block bootstrap3_extra_head %}
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/style.css'  %}">
+
+{% endblock %}
+
+
+{% block bootstrap3_title %}
+    {% block title %} 
+        Welcome to sirdesmond Bookstore 
     {% endblock %}
-</body>
-</html>
+{% endblock %}
+
+
+{% block bootstrap3_content %}
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="{% url 'index' %}" class="navbar-brand">Sirdesmond Bookstore</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="hvr-curl-top-right"><a href="{% url 'index' %}">Home</a></li>
+                <li class="hvr-curl-top-right"><a href="#about">About</a></li>
+                <li class="hvr-curl-top-right"><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="navbar-form pull-right">
+                {% if request.user.is_authenticated %}
+                    Welcome, {% if request.user.first_name %}
+                    {{ request.user.first_name }}
+                    {% else %}
+                    {{ request.user.username }}
+                    {% endif %}! <a href="{% url 'auth_logout' %}">Log out</a>
+                {% else %}
+                    Welcome, Mysterious person!
+                    <a href="{% url 'auth_login' %}">Log in</a>
+                    Click to <a href="{% url 'registration_register' %}">Sign up</a> 
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <img src="{% static 'base/img/header_full.jpg' %}" alt="Header image" class="bg">
+    <div class="paralax">
+        <div class="row">
+            {% block body %}
+                <div class="col-md-8 col-md-offset-2 col-sn-12 maincontent" >
+                    Welcome to our store!
+                    {% if count == 0 %}
+                    We have no books in store for now, but we have a whole lot of information you could grab on our platform. Do ensure you check out our page for latest books coming soon! <br>
+                    {% elif count == 1 %}
+                    We have {{ count }} book in store
+                    {% else %}
+                    We have {{ count }} books in store
+                    {% endif %}
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos fugit doloribus distinctio placeat voluptatum impedit. Quam architecto reiciendis incidunt quis assumenda veniam vero officiis. Sint ratione consequuntur illum quae voluptatem. <br>
+                    User location: {{ request.session.location }} 
+                    {% endblock %}
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+<div class="row text-center navbar footer">
+    <div class="col-md-12">
+        <p> Sirdesmond Bookstore &copy;2019 </p>
+    </div>
+</div>
+

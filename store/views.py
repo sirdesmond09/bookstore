@@ -8,7 +8,6 @@ def store(request):
     count = Book.objects.all().count()
     context = {
         'count':count,
-        'page': 'welcome to sirdesmond bookstore'
     }
     request.session['location'] = "unknown"
     if request.user.is_authenticated():
