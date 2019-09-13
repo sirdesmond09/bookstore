@@ -7,7 +7,8 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^store/', include('store.urls')),
+     url(r'^$', 'store.views.index', name = 'index'),
+    url(r'^store/', include('store.urls'), name = 'store'),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url('', include('social.apps.django_app.urls', namespace = 'social')),
 ]
