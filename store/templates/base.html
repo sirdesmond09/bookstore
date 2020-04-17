@@ -63,20 +63,19 @@
 <div class="container-fluid">
     <img src="{% static 'base/img/header_full.jpg' %}" alt="Header image" class="bg">
     <div class="paralax">
-        <div class="row">
+            <div class="row">
             {% block body %}
                 <div class="col-md-8 col-md-offset-2 col-sn-12 maincontent" >
-                    Welcome to our store!
-                    {% if count == 0 %}
-                    We have no books in store for now, but we have a whole lot of information you could grab on our platform. Do ensure you check out our page for latest books coming soon! <br>
-                    {% elif count == 1 %}
-                    We have {{ count }} book in store
-                    {% else %}
-                    We have {{ count }} books in store
-                    {% endif %}
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos fugit doloribus distinctio placeat voluptatum impedit. Quam architecto reiciendis incidunt quis assumenda veniam vero officiis. Sint ratione consequuntur illum quae voluptatem. <br>
-                    User location: {{ request.session.location }} 
-                    {% endblock %}
+                    <div style="text-align: center"><h3 > Welcome to our store! </h3></div>
+                    {% for book in books %}
+                    <div class="storefront_book_display">
+                        <img src="{% static 'base/img/empty_cover.jpg' %}" >
+                        <span class="storefront_book_title">{{ book.title }} </span> 
+                        <span class="storefront_book_author">{{ book.author }} </span>    
+                    </div>
+
+                    {% endfor %}
+                    
                 </div>
             {% endblock %}
         </div>
@@ -88,4 +87,4 @@
         <p> Sirdesmond Bookstore &copy;2019 </p>
     </div>
 </div>
-
+{% endblock %}
