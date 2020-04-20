@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>There was an error activating your account</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 loginbox">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    Oops!
+                </div>
+            </div>    
+            <div style="padding-top:30px" class="panel-body">
+                There was aproblem activating your bookstore account. Contact us at <a href="mailto:support@sirdesmondbookstore.com">support@sirdesmondbookstore.com</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
